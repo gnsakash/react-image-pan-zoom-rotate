@@ -242,8 +242,8 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
       </div>
       <PanViewer
         style={{
-          width: '100%',
-          height: '100%',
+          width: window.innerWidth+'px',
+          height: window.innerHeight+'px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -258,9 +258,10 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
         key={dx}
       >
         <img
+          width={window.innerWidth+'px'}
+          height={window.innerHeight+'px'}
           style={{
             transform: `rotate(${rotation * 90}deg) scaleX(${flip ? -1 : 1})`,
-            width: '100%',
           }}
           src={image}
           alt={alt}
