@@ -12,7 +12,7 @@ type ReactPanZoomProps = {
 const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
   const [dx, setDx] = React.useState(0);
   const [dy, setDy] = React.useState(0);
-  const [zoom, setZoom] = React.useState(1);
+  const [zoom, setZoom] = React.useState(0);
   const [rotation, setRotation] = React.useState(0);
   const [flip, setFlip] = React.useState(false);
   const innerHeight = React.useRef(window.innerHeight);
@@ -21,7 +21,7 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
   const resetAll = () => {
     setDx(0);
     setDy(0);
-    setZoom(1);
+    setZoom(0);
     setRotation(0);
     setFlip(false);
   };
@@ -30,7 +30,7 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
   };
 
   const zoomOut = () => {
-    if (zoom >= 1) {
+    if (zoom >= 0) {
       setZoom(zoom - 0.2);
     }
   };
@@ -257,8 +257,6 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
       </div>
       <PanViewer
         style={{
-          width: innerWidth.current+'px',
-          height: innerHeight.current+'px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -277,7 +275,6 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
         <img
           style={{
             transform: `rotate(${rotation * 90}deg) scaleX(${flip ? -1 : 1})`,
-            width:innerWidth.current+'px'
           }}
           src={image}
           alt={alt}
