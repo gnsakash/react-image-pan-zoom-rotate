@@ -274,9 +274,11 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
       >
         <img
           style={{
-            transform: `rotate(${rotation * 90}deg) scaleX(${flip ? -1 : 1})`,
+            transform: `rotate(${rotation * 90}deg) scaleX(${flip ? -1 : 1}) translatex(calc(50vw - 50%)) translatey(calc(50vh - 50%))`,
             height:innerHeight+'px',
-            width:innerWidth+'px'
+            width:innerWidth+'px',
+            maxWidth: '100vh',
+            maxHeight: '100vw'
           }}
           src={image}
           alt={alt}
