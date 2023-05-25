@@ -47,12 +47,12 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
       console.log('wdith => ', window.innerHeight+'px');
       console.log('height => ', window.innerWidth+'px');
       setInnerWidth(window.innerHeight);
-      setInnerWidth(window.innerWidth);
+      setInnerHeight(window.innerWidth);
     } else {
       console.log('wdith => ', window.innerWidth+'px');
       console.log('height => ', window.innerHeight+'px');
       setInnerWidth(window.innerWidth);
-      setInnerWidth(window.innerHeight);
+      setInnerHeight(window.innerHeight);
     }
   };
 
