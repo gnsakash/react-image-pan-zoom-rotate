@@ -257,8 +257,8 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
       </div>
       <PanViewer
         style={{
-          width: window.innerWidth+'px',
-          height: window.innerHeight+'px',
+          width: innerWidth+'px',
+          height: innerHeight+'px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
