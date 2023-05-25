@@ -2,9 +2,9 @@
   "name": "react-image-pan-zoom-rotate",
   "version": "1.6.0",
   "description": "React library to give control on image to move zoom and rotate",
-  "author": "mgorabbani",
+  "author": "gnsakash",
   "license": "MIT",
-  "repository": "mgorabbani/react-image-pan-zoom-rotate",
+  "repository": "gnsakash/react-image-pan-zoom-rotate",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
