@@ -14,9 +14,9 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
   const [dy, setDy] = React.useState(0);
   const [zoom, setZoom] = React.useState(1);
   const [rotation, setRotation] = React.useState(0);
-  const [innerHeight, setInnerHeight] = React.useState(window.innerHeight);
-  const [innerWidth, setInnerWidth] = React.useState(window.innerWidth);
   const [flip, setFlip] = React.useState(false);
+  const innerHeight = React.useRef(window.innerHeight);
+  const innerWidth = React.useRef(window.innerWidth);
 
   const resetAll = () => {
     setDx(0);
@@ -43,16 +43,16 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
     } else {
       setRotation(rotation - 1);
     }
-    if ((rotation - 1) === -1 || (rotation - 1) === -3) {
+    if (rotation === 0 || rotation === -2) {
       console.log('wdith => ', window.innerHeight+'px');
       console.log('height => ', window.innerWidth+'px');
-      setInnerWidth(window.innerHeight);
-      setInnerHeight(window.innerWidth);
+      innerWidth.current = window.innerWidth;
+      innerHeight.current = window.innerHeight;
     } else {
-      console.log('wdith => ', window.innerWidth+'px');
-      console.log('height => ', window.innerHeight+'px');
-      setInnerWidth(window.innerWidth);
-      setInnerHeight(window.innerHeight);
+      console.log('wdith => ', window.innerHeight+'px');
+      console.log('height => ', window.innerWidth+'px');
+      innerWidth.current = window.innerHeight;
+      innerHeight.current = window.innerWidth;
     }
   };
 
@@ -257,8 +257,8 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
       </div>
       <PanViewer
         style={{
-          width: innerWidth+'px',
-          height: innerHeight+'px',
+          width: innerWidth.current+'px',
+          height: innerHeight.current+'px',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -273,10 +273,10 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
         key={dx}
       >
         <img
+          width={innerWidth.current+'px'}
+          height={innerHeight.current+'px'}
           style={{
-            transform: `rotate(${rotation * 90}deg) scaleX(${flip ? -1 : 1}) translatex(calc(50vw - 50%)) translatey(calc(50vh - 50%))`,
-            height:innerHeight+'px',
-            width:innerWidth+'px',
+            transform: `rotate(${rotation * 90}deg) scaleX(${flip ? -1 : 1})`,
             maxWidth: '100vh',
             maxHeight: '100vw'
           }}
