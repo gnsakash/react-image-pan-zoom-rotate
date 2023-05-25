@@ -36,13 +36,6 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
   };
 
   const rotateLeft = () => {
-    // console.log('wdith => (rotation === -1 || rotation === -3) ?', (rotation === -1 || rotation === -3) ? window.innerHeight+'px' : window.innerWidth+'px');
-    // console.log('height => (rotation === 0 || rotation === -2) ?', (rotation === 0 || rotation === -2) ? window.innerWidth+'px' : window.innerHeight+'px');
-    if (rotation === -3) {
-      setRotation(0);
-    } else {
-      setRotation(rotation - 1);
-    }
     if (rotation === 0 || rotation === -2) {
       console.log('wdith => ', window.innerHeight+'px');
       console.log('height => ', window.innerWidth+'px');
@@ -53,6 +46,11 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
       console.log('height => ', window.innerWidth+'px');
       innerWidth.current = window.innerHeight;
       innerHeight.current = window.innerWidth;
+    }
+    if (rotation === -3) {
+      setRotation(0);
+    } else {
+      setRotation(rotation - 1);
     }
   };
 
