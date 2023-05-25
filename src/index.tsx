@@ -258,8 +258,8 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
         key={dx}
       >
         <img
-          width={window.innerWidth+'px'}
-          height={window.innerHeight+'px'}
+          width={rotation === 0 || rotation === -2 ? window.innerWidth+'px' : window.innerHeight+'px'}
+          height={rotation === -1 || rotation === -3 ? window.innerHeight+'px' : window.innerWidth+'px'}
           style={{
             transform: `rotate(${rotation * 90}deg) scaleX(${flip ? -1 : 1})`,
           }}
