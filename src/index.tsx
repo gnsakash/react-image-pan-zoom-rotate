@@ -14,6 +14,8 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
   const [dy, setDy] = React.useState(0);
   const [zoom, setZoom] = React.useState(1);
   const [rotation, setRotation] = React.useState(0);
+  const [innerHeight, setInnerHeight] = React.useState(window.innerHeight);
+  const [innerWidth, setInnerWidth] = React.useState(window.innerWidth);
   const [flip, setFlip] = React.useState(false);
 
   const resetAll = () => {
@@ -34,10 +36,23 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
   };
 
   const rotateLeft = () => {
+    // console.log('wdith => (rotation === -1 || rotation === -3) ?', (rotation === -1 || rotation === -3) ? window.innerHeight+'px' : window.innerWidth+'px');
+    // console.log('height => (rotation === 0 || rotation === -2) ?', (rotation === 0 || rotation === -2) ? window.innerWidth+'px' : window.innerHeight+'px');
     if (rotation === -3) {
       setRotation(0);
     } else {
       setRotation(rotation - 1);
+    }
+    if ((rotation - 1) === -1 || (rotation - 1) === -3) {
+      console.log('wdith => ', window.innerHeight+'px');
+      console.log('height => ', window.innerWidth+'px');
+      setInnerWidth(window.innerHeight);
+      setInnerWidth(window.innerWidth);
+    } else {
+      console.log('wdith => ', window.innerWidth+'px');
+      console.log('height => ', window.innerHeight+'px');
+      setInnerWidth(window.innerWidth);
+      setInnerWidth(window.innerHeight);
     }
   };
 
@@ -258,8 +273,8 @@ const ReactPanZoom = ({ image, alt, ref }: ReactPanZoomProps) => {
         key={dx}
       >
         <img
-          width={(rotation === -1 || rotation === -3) ? window.innerHeight+'px' : window.innerWidth+'px'}
-          height={(rotation === 0 || rotation === -2) ? window.innerWidth+'px' : window.innerHeight+'px'}
+          width={innerWidth+'px'}
+          height={innerHeight+'px'}
           style={{
             transform: `rotate(${rotation * 90}deg) scaleX(${flip ? -1 : 1})`,
           }}
